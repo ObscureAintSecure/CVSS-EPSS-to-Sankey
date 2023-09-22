@@ -15,6 +15,9 @@ The end result should be this:
 
 ![Image of the NVD CVSS vulnerabilities and how the EPSS enhances the scoring based on exploitability metrics.](cvss-epss-sankey-example.jpg)
 
+
+You can test the copy/paste of the data you should get in the resulting sankey_data-DATE.csv file by using the data in **example_sankey_data_09222023.csv**.
+
 --------------------------------------------------
 
 ### There are three (3) Python files provided in this repository:
