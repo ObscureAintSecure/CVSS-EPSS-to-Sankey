@@ -2,7 +2,7 @@
 >First, a big thank you to @patrickmgarrity who first created this and inspired me to want to recreate it and be able to easily reproduce it anytime to get fresh counts. His original post is here: https://www.linkedin.com/feed/update/urn:li:activity:7090338509244231680/.
 
 
-To create the Sankey chart you need source data. For this project, we are using the NIST National Vulnerabilty Database and the [FIRST.org EPSS data](https://www.first.org/epss/data_stats). For the Sankey chart you will use https://sankeymatic.com.
+To create the CVSS/EPSS Sankey chart you need source data. For this project, we are using the NIST National Vulnerabilty Database and the [FIRST.org EPSS data](https://www.first.org/epss/data_stats). For the Sankey chart you will use https://sankeymatic.com.
 
 Steps:  
 1. Download the National Vulnerability Database via API using the **getNVDdata-CSV.py** script
@@ -10,7 +10,7 @@ Steps:
 3. Combine data from both files using the **combineEPSSdataWithNVD.py** script
 4. Transform the combined data to the sankeymatic.com format
 
-
+  
 
 There are three (3) Python files provided.  
 
@@ -27,6 +27,7 @@ api_key = "<API KEY HERE>"
 						
 A CSV file will be generated in the same directory as the script and will have the current date appended to it.	It will look like **nvd-data-09222023.csv**.
 
+  
 
 2) **combineEPSSdataWithNVD.py**
 
@@ -42,6 +43,7 @@ combineEPSSdataToNVD.py nvd_data-09202023.csv epss_scores-2023-09-21.csv
 	
 If the source files are not named and launch, then the script will ask you for them.
 
+  
 
 3) **transformDataForSankey.py**
 
@@ -55,6 +57,7 @@ The script requires the source file to be named when executed, like this:
 
 	If the source files are not named and launch, then the script will ask you for them.
 
+  
 
 
 
