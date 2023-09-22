@@ -10,6 +10,8 @@ Steps:
 3. Combine data from both files using the **combineEPSSdataWithNVD.py** script
 4. Transform the combined data to the sankeymatic.com format
 
+The end result should be this:
+![Image of the NVD CVSS vulnerabilities and how the EPSS enhances the scoring based on exploitability metrics.](/assets/images/cvss-epss-sankey-example.jpg)
 --------------------------------------------------
 
 There are three (3) Python files provided.  

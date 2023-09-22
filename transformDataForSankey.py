@@ -24,19 +24,19 @@ def categorize_cvss_score(score):
 # Function to categorize EPSS scores into specified ranges
 def categorize_epss_score_percent(score):
     if score >= 0.975:
-        return '97.5-100'
+        return '97.5%'
     elif 0.778 <= score < 0.975:
-        return '77.8-97.5'
+        return '77.8%'
     elif 0.179 <= score < 0.778:
-        return '17.9-77.8'
+        return '17.9%'
     elif 0.01 <= score < 0.179:
-        return '1-17.9'
+        return '1%'
     elif 0.0017 <= score < 0.01:
-        return '0.17-1'
+        return '.17%'
     elif 0.00061 <= score < 0.0017:
-        return '0.061-0.17'
+        return '.061%'
     elif score < 0.00061:
-        return '0-0.061'
+        return '.042%'
     else:
         return None
 
@@ -52,13 +52,13 @@ def main(file_path):
         '6-6.9': '#FEFA7F',
         '5-5.9': '#EDFEAE',
         '0-4.9': '#C4F188',
-        '97.5-100': '#E93F3B',
-        '77.8-97.5': '#FFD68C',
-        '17.9-77.8': '#D9AC5E',
-        '1-17.9': '#FFFF8B',
-        '0.17-1': '#FFFF8B',
-        '0.061-0.17': '#EDFEB0',
-        '0-0.061': '#C4F188'
+        '97.5%': '#E93F3B',
+        '77.8%': '#FFD68C',
+        '17.9%': '#D9AC5E',
+        '1%': '#FFFF8B',
+        '.17%': '#FFFF8B',
+        '.061%': '#EDFEB0',
+        '.061%': '#C4F188'
     }
     
     # Read the CSV data into a DataFrame with low_memory set to False
@@ -105,7 +105,7 @@ def main(file_path):
 
     # Define the custom sort order for the "Source" column and the "Destination" column
     source_order = ['National Vulnerability Database', 'CVE Count', '10', '9-9.9', '8-8.9', '7-7.9', '6-6.9', '5-5.9', '0-4.9']
-    destination_order = ['CVE Count', '10', '9-9.9', '8-8.9', '7-7.9', '6-6.9', '5-5.9', '0-4.9', '97.5-100', '77.8-97.5', '17.9-77.8', '1-17.9', '0.17-1', '0.061-0.17', '0-0.061']
+    destination_order = ['CVE Count', '10', '9-9.9', '8-8.9', '7-7.9', '6-6.9', '5-5.9', '0-4.9', '97.5%', '77.8%', '17.9%', '1%', '.17%', '.061%', '.042%']
     
     # Convert the "Source" and "Destination" columns to categorical types with the custom sort order
     sankey_data['Source'] = pd.Categorical(sankey_data['Source'], categories=source_order, ordered=True)
@@ -122,7 +122,7 @@ def main(file_path):
 	
     # Save the structured data to a new CSV file with the current date appended to the filename
     output_file = f'sankey_data-{current_date}.csv'
-    sankey_data.to_csv(output_file, index=False)
+    sankey_data.to_csv(output_file, index=False, sep=' ')
 
     # Add the static data starting three rows below the original data
     static_data = pd.DataFrame({
@@ -139,18 +139,24 @@ def main(file_path):
             ':6-6.9 #FDF54A',
             ':5-5.9 #E6FE8E',
             ':0-4.9 #ACEA57',
-            ':97.5-100 #FF0D00',
-            ':77.8-97.5 #FFA500',
-            ':17.9-77.8 #FDA935',
-            ':1-17.9 #FDDB56',
-            ':0.17-1 #FDF54A',
-            ':0.061-0.17 #E6FE8E',
-            ':0-0.061 #ACEA57'
+            ':97.5% #FF0D00',
+            ':77.8% #FFA500',
+            ':17.9% #FDA935',
+            ':1% #FDDB56',
+            ':.17% #FDF54A',
+            ':.061% #E6FE8E',
+            ':.042% #ACEA57'
         ]
     })
 
     # Append the static data to the existing CSV file
     static_data.to_csv(output_file, mode='a', index=False, header=False)
+
+    with open(output_file, 'r+') as f:
+	    content = f.read()
+	    f.seek(0)
+	    f.write(content.replace('"', ''))
+	    f.truncate()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Transform CSV data for Sankey diagram.')
@@ -162,4 +168,5 @@ if __name__ == '__main__':
     else:
         file_path = input('Please enter the path to the CSV file to transform: ')
 
+    
     main(file_path)
