@@ -1,14 +1,14 @@
-[!NOTE]
-First, a big thank you to @patrickmgarrity who first created this and inspired me to want to recreate it and be able to easily reproduce it anytime to get fresh counts. His original post is here: https://www.linkedin.com/feed/update/urn:li:activity:7090338509244231680/.
+>[!NOTE]
+>First, a big thank you to @patrickmgarrity who first created this and inspired me to want to recreate it and be able to easily reproduce it anytime to get fresh counts. His original post is here: https://www.linkedin.com/feed/update/urn:li:activity:7090338509244231680/.
 
 
 To create the Sankey chart you need source data. For this project, we are using the NIST National Vulnerabilty Database and the [FIRST.org EPSS data](https://www.first.org/epss/data_stats). For the Sankey chart you will use https://sankeymatic.com.
 
 Steps:  
-	1. Download the National Vulnerability Database via API using the **getNVDdata-CSV.py** script
-	2. Download the EPSS data from the website link above by clicking the "Download the data" button
-	3. Combine data from both files using the **combineEPSSdataWithNVD.py** script
-	4. Transform the combined data to the sankeymatic.com format
+1. Download the National Vulnerability Database via API using the **getNVDdata-CSV.py** script
+2. Download the EPSS data from the website link above by clicking the "Download the data" button
+3. Combine data from both files using the **combineEPSSdataWithNVD.py** script
+4. Transform the combined data to the sankeymatic.com format
 
 
 
@@ -20,10 +20,10 @@ This will pull the entire national vulnerability database from NIST and put it i
 
 You will need your own NIST API key for this activity. At the bottom of the script add your API key in the API key section that looks like this:
 						
-		```
-		# Replace with your actual API key
-		api_key = "<API KEY HERE>"
-		```
+```
+# Replace with your actual API key
+api_key = "<API KEY HERE>"
+```
 						
 A CSV file will be generated in the same directory as the script and will have the current date appended to it.	It will look like **nvd-data-09222023.csv**.
 
@@ -36,11 +36,11 @@ This is essentially doing a "vlookup" type Excel function to match the CVE's in 
 
 The script required the two source files be named when executed, like this:
 
-	```
-	combineEPSSdataToNVD.py nvd_data-09202023.csv epss_scores-2023-09-21.csv
-	```
+```
+combineEPSSdataToNVD.py nvd_data-09202023.csv epss_scores-2023-09-21.csv
+```
 	
-	If the source files are not named and launch, then the script will ask you for them.
+If the source files are not named and launch, then the script will ask you for them.
 
 
 3) **transformDataForSankey.py**
