@@ -1,6 +1,7 @@
 >[!NOTE]
 >First, a big thank you to @patrickmgarrity who first created this and inspired me to want to recreate it and be able to easily reproduce it anytime to get fresh counts. His original post is on [LinkedIn Here](https://www.linkedin.com/posts/patrickmgarrity_vulnerabilitymanagement-riskmanagement-itsecurity-activity-7107083107790438400-pz8a).
 
+------------------------------------------------
 
 To create the CVSS/EPSS Sankey chart you need source data. For this project, we are using the NIST National Vulnerabilty Database and the [FIRST.org EPSS data](https://www.first.org/epss/data_stats). For the Sankey chart you will use https://sankeymatic.com.
 
