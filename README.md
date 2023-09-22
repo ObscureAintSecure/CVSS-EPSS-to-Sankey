@@ -56,7 +56,5 @@ The script requires the source file to be named when executed, like this:
 	If the source files are not named and launch, then the script will ask you for them.
 
 
-The purpose of this project is to provide a central repository of vulnerability visualizations that are created by Buddy Bergman. You are free to copy and redistribute the material in any medium or format with attribution to Buddy Bergman. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 
-----------------------------------
 
