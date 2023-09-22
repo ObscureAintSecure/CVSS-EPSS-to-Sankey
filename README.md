@@ -16,16 +16,16 @@ There are three (3) Python files provided.
 
 1) **getNVDdata-CSV.py**
 		
-	- This will pull the entire national vulnerability database from NIST and put it into CSV format. Each API call pulls the maximum 2000 results and sleeps the loop for 6 seconds before continuing.
+This will pull the entire national vulnerability database from NIST and put it into CSV format. Each API call pulls the maximum 2000 results and sleeps the loop for 6 seconds before continuing.
 
-	- You will need your own NIST API key for this activity. At the bottom of the script add your API key in the API key section that looks like this:
+You will need your own NIST API key for this activity. At the bottom of the script add your API key in the API key section that looks like this:
 						
-	- ```
-	- # Replace with your actual API key
-	- api_key = "<API KEY HERE>"
-	- ```
+```
+# Replace with your actual API key
+api_key = "<API KEY HERE>"
+```
 						
-	- A CSV file will be generated in the same directory as the script and will have the current date appended to it.	It will look like **nvd-data-09222023.csv**.
+A CSV file will be generated in the same directory as the script and will have the current date appended to it.	It will look like **nvd-data-09222023.csv**.
 
   
 
