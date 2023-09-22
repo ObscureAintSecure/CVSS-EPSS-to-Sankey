@@ -9,6 +9,7 @@ Steps:
 2. Download the EPSS data from the website link above by clicking the "Download the data" button
 3. Combine data from both files using the **combineEPSSdataWithNVD.py** script
 4. Transform the combined data to the sankeymatic.com format
+5. Copy/paste the data from the CSV file (except line 1) to sankeymatic.com
 
 The end result should be this:
 
@@ -16,7 +17,7 @@ The end result should be this:
 
 --------------------------------------------------
 
-There are three (3) Python files provided.  
+**There are three (3) Python files provided in this repository:**
 
 1) **getNVDdata-CSV.py**
 		
