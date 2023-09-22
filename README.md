@@ -5,9 +5,11 @@
 
 To create the CVSS/EPSS Sankey chart you need source data. For this project, we are using the NIST National Vulnerabilty Database and the [FIRST.org EPSS data](https://www.first.org/epss/data_stats). For the Sankey chart you will use https://sankeymatic.com.
 
+Using this process, you should be able to easily generate all data and make fresh Sankey charts whenever you like.
+
 ### Steps:  
 1. Download the National Vulnerability Database via API using the **getNVDdata-CSV.py** script
-2. Download the EPSS data from [FIRST.org here](https://www.first.org/epss/data_stats) by clicking the "Download the data" button
+2. Download the EPSS data from [FIRST.org here](https://www.first.org/epss/data_stats) and click the "Download the data" button
 3. Combine data from both files using the **combineEPSSdataWithNVD.py** script
 4. Transform the combined data to the sankeymatic.com format
 5. Copy/paste the data from the CSV file (except line 1) to sankeymatic.com
