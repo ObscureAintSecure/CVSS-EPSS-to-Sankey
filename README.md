@@ -12,7 +12,7 @@ Steps:
 
 The end result should be this:
 
-![Image of the NVD CVSS vulnerabilities and how the EPSS enhances the scoring based on exploitability metrics.](/assets/images/cvss-epss-sankey-example.jpg)
+![Image of the NVD CVSS vulnerabilities and how the EPSS enhances the scoring based on exploitability metrics.](cvss-epss-sankey-example.jpg)
 
 --------------------------------------------------
 
