@@ -10,8 +10,9 @@ def write_debug_info(message, data):
 def merge_csv_files(source1, source2):
     try:
         # Read the CSV files into pandas DataFrames
-        df1 = pd.read_csv(source1)
-        df2 = pd.read_csv(source2)
+        #df1 = pd.read_csv(source1)
+        df1 = pd.read_csv(source1, dtype={3: str})
+        df2 = pd.read_csv(source2, skiprows=1)  # Skip the first row in EPSS data file
 
         col1 = df1.columns[0]
         col2 = df2.columns[0]
@@ -32,7 +33,7 @@ def merge_csv_files(source1, source2):
 
         # Generate the output filename
         current_date = datetime.now().strftime("%m%d%Y")
-        output_filename = f"cvss-epss-data-{current_date}.csv"
+        output_filename = f"combined-cvss-epss-data-{current_date}.csv"
 
         # Write the DataFrame to a new CSV file
         merged_df.to_csv(output_filename, index=False)
