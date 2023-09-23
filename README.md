@@ -21,11 +21,11 @@ The end result should be this:
 
 You can test the copy/paste of the data you should get in the resulting **sankey_data-DATE.csv** file by using the data in **[example_sankey_data_09232023.csv](/blob/main/example_sankey_data-09222023.csv)**.
 
-1. Open the example file
+1. Open the example file above
 2. Copy/paste the data into sankeymatic.com
 
 
-![example process](copy-data-to-sankeymatic.gif)/blob/main/copy-data-to-sankeymatic.gif
+![example process](copy-data-to-sankeymatic.gif)
 
 
 --------------------------------------------------
