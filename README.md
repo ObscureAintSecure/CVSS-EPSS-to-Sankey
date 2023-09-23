@@ -29,6 +29,8 @@ You can test the copy/paste of the data you should get in the resulting **sankey
 		
 This will pull the entire national vulnerability database from NIST and put it into CSV format. Each API call pulls the maximum 2000 results and sleeps the loop for 6 seconds before continuing.
 
+This process will take about 12 minutes to complete.
+
 You will need your own NIST API key for this activity. At the bottom of the script add your API key in the API key section that looks like this:
 						
 ```
