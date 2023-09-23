@@ -58,7 +58,7 @@ def main(file_path):
         '1%': '#FFFF8B',
         '.17%': '#FFFF8B',
         '.061%': '#EDFEB0',
-        '.061%': '#C4F188'
+        '.042%': '#C4F188'
     }
     
     # Read the CSV data into a DataFrame with low_memory set to False
@@ -137,14 +137,14 @@ def main(file_path):
             ':8-8.9 #FDA935',
             ':7-7.9 #FDDB56',
             ':6-6.9 #FDF54A',
-            ':5-5.9 #E6FE8E',
+            ':5-5.9 #E1FD82',
             ':0-4.9 #ACEA57',
             ':97.5% #FF0D00',
             ':77.8% #FFA500',
             ':17.9% #FDA935',
             ':1% #FDDB56',
             ':.17% #FDF54A',
-            ':.061% #E6FE8E',
+            ':.061% #E1FD82',
             ':.042% #ACEA57'
         ]
     })
