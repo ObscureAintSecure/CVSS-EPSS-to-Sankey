@@ -25,7 +25,7 @@ You can test the copy/paste of the data you should get in the resulting **sankey
 2. Copy/paste the data into sankeymatic.com
 
 
-/blob/main/copy-data-to-sankeymatic.gif
+![example process](copy-data-to-sankeymatic.gif)/blob/main/copy-data-to-sankeymatic.gif
 
 
 --------------------------------------------------
