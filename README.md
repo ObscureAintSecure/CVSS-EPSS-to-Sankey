@@ -19,7 +19,7 @@ The end result should be this:
 ![Image of the NVD CVSS vulnerabilities and how the EPSS enhances the scoring based on exploitability metrics.](cvss-epss-sankey-example.jpg)
 
 
-You can test the copy/paste of the data you should get in the resulting **sankey_data-DATE.csv** file by using the data in **[example_sankey_data_09222023.csv](/blob/main/example_sankey_data-09222023.csv)**.
+You can test the copy/paste of the data you should get in the resulting **sankey_data-DATE.csv** file by using the data in **[example_sankey_data_09232023.csv](/blob/main/example_sankey_data-09222023.csv)**.
 
 --------------------------------------------------
 
@@ -51,10 +51,12 @@ This is essentially doing a "vlookup" type Excel function to match the CVE's in 
 The script required the two source files be named when executed, like this:
 
 ```
-combineEPSSdataToNVD.py nvd_data-09202023.csv epss_scores-2023-09-21.csv
+combineEPSSdataToNVD.py --source1=path/to/nvd_data-09202023.csv --source2=path/to/epss_scores-2023-09-21.csv
 ```
 	
 If the source files are not named and launch, then the script will ask you for them.
+
+During the merge process, any CVE's that do not have a CVSS baseScore will get marked as 'unscored'. This will be represented in the Sankey output as well.
 
 --------------------------------------------------
 
@@ -68,7 +70,7 @@ The script requires the source file to be named when executed, like this:
 	transformNVDdataForSankey.py --file cvss-epss-data-09212023.csv
 	```
 
-	If the source files are not named and launch, then the script will ask you for them.
+	If the source files are not named at launch, then the script will ask you for them.
 
 
 

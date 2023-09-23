@@ -1,5 +1,6 @@
 import pandas as pd
 import sys
+import argparse
 from datetime import datetime
 
 def write_debug_info(message, data):
@@ -14,6 +15,13 @@ def merge_csv_files(source1, source2):
         df1 = pd.read_csv(source1, dtype={3: str})
         df2 = pd.read_csv(source2, skiprows=1)  # Skip the first row in EPSS data file
 
+        # Replace any NaN values in the 'baseScore' column with 'unscored'
+        df1['baseScore'].fillna('unscored', inplace=True)
+
+        # Rename the first column to 'CVE'
+        df1.rename(columns={df1.columns[0]: 'CVE'}, inplace=True)
+
+        col1 = 'CVE'  # Since we've renamed the first column to 'CVE'		
         col1 = df1.columns[0]
         col2 = df2.columns[0]
         new_col = df2.columns[1]
@@ -43,9 +51,14 @@ def merge_csv_files(source1, source2):
             f.write(f"An error occurred: {e}\n")
 
 if __name__ == "__main__":
-    if len(sys.argv) == 3:
-        source1 = sys.argv[1]
-        source2 = sys.argv[2]
+    parser = argparse.ArgumentParser(description='Merge two CSV files.')
+    parser.add_argument('--source1', help='Path to the NVD data (Source1) CSV file')
+    parser.add_argument('--source2', help='Path to the EPSS data (Source2) CSV file')
+    args = parser.parse_args()
+
+    if args.source1 and args.source2:
+        source1 = args.source1
+        source2 = args.source2
     else:
         source1 = input("Please enter the path to the NVD data (Source1) CSV file: ")
         source2 = input("Please enter the path to the EPSS data (Source2) CSV file: ")
