@@ -21,6 +21,13 @@ The end result should be this:
 
 You can test the copy/paste of the data you should get in the resulting **sankey_data-DATE.csv** file by using the data in **[example_sankey_data_09232023.csv](/blob/main/example_sankey_data-09222023.csv)**.
 
+1. Open the example file
+2. Copy/paste the data into sankeymatic.com
+
+
+/blob/main/copy-data-to-sankeymatic.gif
+
+
 --------------------------------------------------
 
 ### There are three (3) Python files provided in this repository:
