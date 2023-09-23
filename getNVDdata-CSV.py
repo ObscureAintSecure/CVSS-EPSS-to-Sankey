@@ -2,10 +2,17 @@ import requests
 import json
 import csv
 import time
+from datetime import datetime
 
 def fetch_nvd_data(base_url, api_key, start_index=0, results_per_page=2000, csv_file='nvd_data.csv'):
     headers = {'API_KEY': api_key}
     fieldnames = ['id', 'published', 'baseScore', 'baseSeverity', 'exploitabilityScore', 'impactScore', 'version']
+
+    # Get the current date and format it as MMDDYYYY
+    current_date = datetime.now().strftime("%m%d%Y")
+    
+    # Append the current date to the CSV file name
+    csv_file = f'nvd_data-{current_date}.csv'
 
     # Initialize the CSV writer
     with open(csv_file, 'w', newline='') as csvfile:
@@ -69,10 +76,10 @@ def fetch_nvd_data(base_url, api_key, start_index=0, results_per_page=2000, csv_
         time.sleep(6)  # Sleep for 6 seconds to respect rate limits
 
 # Replace with your actual API key
-api_key = "API KEY HERE"
+api_key = "2d6ea4ed-80ae-42e9-89bc-d6ea6982753e"
 
 # Base URL for the NVD API
 base_url = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 
 fetch_nvd_data(base_url, api_key)
-print("NVD data has been saved to nvd_data.csv.")
+print(f"NVD data has been saved to nvd_data-{datetime.now().strftime('%m%d%Y')}.csv.")
