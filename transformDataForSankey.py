@@ -5,7 +5,7 @@ from datetime import datetime
 # Function to categorize CVSS scores into specified ranges
 def categorize_cvss_score(score):
     if pd.isna(score) or score == 'unscored':
-        return 'unscored'
+        return 'CVSS unscored'
     try:
         score = float(score)
     except ValueError:
@@ -28,8 +28,16 @@ def categorize_cvss_score(score):
     else:
         return None
 
+		
 # Function to categorize EPSS scores into specified ranges
 def categorize_epss_score_percent(score):
+    if pd.isna(score) or score == 'unscored':
+        return 'EPSS unscored'
+    try:
+        score = float(score)
+    except ValueError:
+        return None
+
     if score >= 0.975:
         return '97.5%'
     elif 0.778 <= score < 0.975:
@@ -49,7 +57,7 @@ def categorize_epss_score_percent(score):
 
 # Function to categorize CVEs as scored or unscored
 def categorize_cve_status(cve):
-    return 'scored' if pd.notna(cve) else 'unscored'
+    return 'scored' if pd.notna(cve) else 'CVSS unscored'
 
 def main(file_path):
     # Define a dictionary to map 'Destination' values to colors
@@ -70,7 +78,8 @@ def main(file_path):
         '.17%': '#FFFF8B',
         '.061%': '#EDFEB0',
         '.042%': '#C4F188',
-		'unscored': '#CCCCCC'
+		'CVSS unscored': '#CCCCCC',
+		'EPSS unscored': '#CCCCCC'
     }
     
     # Read the CSV data into a DataFrame with low_memory set to False
@@ -81,7 +90,7 @@ def main(file_path):
 
     # Count the number of scored and unscored CVEs
     cve_status_counts = df['CVE Status'].value_counts().reset_index()
-    cve_status_counts = cve_status_counts[cve_status_counts['CVE Status'] == 'unscored']  # Keep only 'unscored' rows
+    cve_status_counts = cve_status_counts[cve_status_counts['CVE Status'] == 'CVSS unscored']  # Keep only 'unscored' rows
     cve_status_counts.columns = ['CVE Status', 'Weight']
     cve_status_counts['Source'] = 'CVE Count'
     cve_status_counts = cve_status_counts[['Source', 'CVE Status', 'Weight']]
@@ -115,7 +124,7 @@ def main(file_path):
     sankey_data['Weight'] = sankey_data['Weight'].apply(lambda x: f'[{x}]')
 
     # Define a custom sort order for the "CVE Count" destinations
-    custom_order = ['10', '9-9.9', '8-8.9', '7-7.9', '6-6.9', '5-5.9', '0-4.9', 'unscored']
+    custom_order = ['10', '9-9.9', '8-8.9', '7-7.9', '6-6.9', '5-5.9', '0-4.9', 'CVSS unscored']
 
     # Sort the DataFrame according to this custom order, but only where Source is "CVE Count"
     cve_count_rows = sankey_data[sankey_data['Source'] == 'CVE Count'].copy()
@@ -126,8 +135,8 @@ def main(file_path):
     sankey_data = pd.concat([sankey_data[sankey_data['Source'] != 'CVE Count'], cve_count_rows])
 
     # Define the custom sort order for the "Source" column and the "Destination" column
-    source_order = ['National Vulnerability Database', 'CVE Count', '10', '9-9.9', '8-8.9', '7-7.9', '6-6.9', '5-5.9', '0-4.9', 'unscored']
-    destination_order = ['CVE Count', '10', '9-9.9', '8-8.9', '7-7.9', '6-6.9', '5-5.9', '0-4.9', 'unscored', '97.5%', '77.8%', '17.9%', '1%', '.17%', '.061%', '.042%']
+    source_order = ['National Vulnerability Database', 'CVE Count', '10', '9-9.9', '8-8.9', '7-7.9', '6-6.9', '5-5.9', '0-4.9', 'CVSS unscored']
+    destination_order = ['CVE Count', '10', '9-9.9', '8-8.9', '7-7.9', '6-6.9', '5-5.9', '0-4.9', 'CVSS unscored', '97.5%', '77.8%', '17.9%', '1%', '.17%', '.061%', '.042%', 'EPSS unscored']
     
     # Convert the "Source" and "Destination" columns to categorical types with the custom sort order
     sankey_data['Source'] = pd.Categorical(sankey_data['Source'], categories=source_order, ordered=True)
@@ -168,7 +177,8 @@ def main(file_path):
             ':.17% #FDF54A',
             ':.061% #E1FD82',
             ':.042% #ACEA57',
-			':unscored #A4A4A4'
+			':CVSS unscored #A4A4A4',
+			':EPSS unscored #A4A4A4'
         ]
     })
 

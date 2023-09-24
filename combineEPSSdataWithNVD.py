@@ -11,12 +11,11 @@ def write_debug_info(message, data):
 def merge_csv_files(source1, source2):
     try:
         # Read the CSV files into pandas DataFrames
-        #df1 = pd.read_csv(source1)
         df1 = pd.read_csv(source1, dtype={3: str})
         df2 = pd.read_csv(source2, skiprows=1)  # Skip the first row in EPSS data file
 
-        # Replace any NaN values in the 'baseScore' column with 'unscored'
-        df1['baseScore'].fillna('unscored', inplace=True)
+        # Replace any NaN values in the 'baseScore' column with 'CVSS unscored'
+        df1['baseScore'].fillna('CVSS unscored', inplace=True)
 
         # Rename the first column to 'CVE'
         df1.rename(columns={df1.columns[0]: 'CVE'}, inplace=True)
@@ -39,12 +38,16 @@ def merge_csv_files(source1, source2):
         # Write debug info to file
         write_debug_info("First few rows of merged data:", merged_df)
 
+        # Replace any NaN values in the 'epss' column with 'EPSS unscored'
+        merged_df[new_col].fillna('EPSS unscored', inplace=True)
+		
         # Generate the output filename
         current_date = datetime.now().strftime("%m%d%Y")
         output_filename = f"combined-cvss-epss-data-{current_date}.csv"
 
         # Write the DataFrame to a new CSV file
         merged_df.to_csv(output_filename, index=False)
+
         
     except Exception as e:
         with open("debug_info.txt", "a") as f:

@@ -7,7 +7,7 @@ CVE Count [58399] 7-7.9 #FEE588
 CVE Count [32960] 6-6.9 #FEFA7F
 CVE Count [37618] 5-5.9 #EDFEAE
 CVE Count [32328] 0-4.9 #C4F188
-CVE Count [13692] unscored #CCCCCC
+CVE Count [13692] CVSS unscored #CCCCCC
 10 [7] 97.5% #E93F3B
 10 [635] 77.8% #FFD68C
 10 [644] 17.9% #D9AC5E
@@ -36,6 +36,7 @@ CVE Count [13692] unscored #CCCCCC
 7-7.9 [14044] .17% #FFFF8B
 7-7.9 [19085] .061% #EDFEB0
 7-7.9 [14262] .042% #C4F188
+7-7.9 [1] EPSS unscored #CCCCCC
 6-6.9 [2] 97.5% #E93F3B
 6-6.9 [252] 77.8% #FFD68C
 6-6.9 [400] 17.9% #D9AC5E
@@ -57,9 +58,10 @@ CVE Count [13692] unscored #CCCCCC
 0-4.9 [9932] .17% #FFFF8B
 0-4.9 [8205] .061% #EDFEB0
 0-4.9 [11871] .042% #C4F188
-unscored [2] .17% #FFFF8B
-unscored [6] .061% #EDFEB0
-unscored [887] .042% #C4F188
+CVSS unscored [2] .17% #FFFF8B
+CVSS unscored [6] .061% #EDFEB0
+CVSS unscored [887] .042% #C4F188
+CVSS unscored [12797] EPSS unscored #CCCCCC
 
 
 // Node color:
@@ -79,4 +81,5 @@ unscored [887] .042% #C4F188
 :.17% #FDF54A
 :.061% #E1FD82
 :.042% #ACEA57
-:unscored #A4A4A4
+:CVSS unscored #A4A4A4
+:EPSS unscored #A4A4A4
