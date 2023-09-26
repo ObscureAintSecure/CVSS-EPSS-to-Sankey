@@ -6,13 +6,13 @@ from datetime import datetime
 
 def fetch_nvd_data(base_url, api_key, start_index=0, results_per_page=2000, csv_file='nvd_data.csv'):
     headers = {'API_KEY': api_key}
-    fieldnames = ['id', 'published', 'baseScore', 'baseSeverity', 'exploitabilityScore', 'impactScore', 'version']
+    fieldnames = ['id', 'published', 'baseScore', 'baseSeverity', 'exploitabilityScore', 'impactScore', 'version', 'vulnStatus']
 
     # Get the current date and format it as MMDDYYYY
     current_date = datetime.now().strftime("%m%d%Y")
     
     # Append the current date to the CSV file name
-    csv_file = f'nvd_data-{current_date}.csv'
+    csv_file = f'nvd_data2-{current_date}.csv'
 
     # Initialize the CSV writer
     with open(csv_file, 'w', newline='') as csvfile:
@@ -56,7 +56,13 @@ def fetch_nvd_data(base_url, api_key, start_index=0, results_per_page=2000, csv_
                 # Use the first available metrics for other fields
                 first_metrics = next(iter(metrics_dict.values()), [{}])[0]
                 cvss_data = first_metrics.get('cvssData', {})
+
+                vuln_status = cve.get('vulnStatus', "")
                 
+                # Skip the row if 'vulnStatus' is "Rejected" or "Reserved" although Reserved wouldn't show up in the NVD.
+                if "Rejected" in vuln_status or "Reserved" in vuln_status:
+                    continue
+				
                 row = {
                     'id': cve.get('id', ''),
                     'published': cve.get('published', ''),
@@ -64,9 +70,11 @@ def fetch_nvd_data(base_url, api_key, start_index=0, results_per_page=2000, csv_
                     'baseSeverity': first_metrics.get('baseSeverity', ''),
                     'exploitabilityScore': first_metrics.get('exploitabilityScore', ''),
                     'impactScore': first_metrics.get('impactScore', ''),
-                    'version': version_str  # Store the CVSS versions as a comma-separated string
+                    'version': version_str,  # Store the CVSS versions as a comma-separated string
+                    'vulnStatus': vuln_status
+
                 }
-                
+
                 writer.writerow(row)
 
         if start_index + results_per_page >= total_results:
