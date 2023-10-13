@@ -73,11 +73,11 @@ This transforms the **cvss-epss-data-DATE.csv** file data into a format that wil
 
 The script requires the source file to be named when executed, like this:
 
-	```
-	transformNVDdataForSankey.py --file cvss-epss-data-09212023.csv
-	```
+```
+transformNVDdataForSankey.py --file cvss-epss-data-09212023.csv
+```
 
-	If the source files are not named at launch, then the script will ask you for them.
+If the source files are not named at launch, then the script will ask you for them.
 
 
 
