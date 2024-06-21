@@ -84,7 +84,7 @@ def fetch_nvd_data(base_url, api_key, start_index=0, results_per_page=2000, csv_
         time.sleep(6)  # Sleep for 6 seconds to respect rate limits
 
 # Replace with your actual API key
-api_key = "2d6ea4ed-80ae-42e9-89bc-d6ea6982753e"
+api_key = "<API KEY>"
 
 # Base URL for the NVD API
 base_url = "https://services.nvd.nist.gov/rest/json/cves/2.0"
